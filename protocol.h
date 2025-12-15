@@ -37,3 +37,5 @@ void reset_message(struct message *msg);
 
 void encode(uint8_t buffer[MAX_PACKET_SIZE], struct message *msg, struct result *res);
 void decode(uint8_t buffer[MAX_PACKET_SIZE], struct message *msg, struct result *res);
+
+void print_message(struct message *msg);
