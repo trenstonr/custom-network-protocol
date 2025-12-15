@@ -1,7 +1,8 @@
 #include <iostream>
-using namespace std;
 
 #include "protocol.h"
+
+using namespace std;
 
 void reset_result(struct result *res) {
     res->size = 0;
@@ -72,7 +73,7 @@ void decode(uint8_t buffer[MAX_PACKET_SIZE], struct message *msg, struct result 
 
     msg->type = buffer[1];
 
-    std::string temp_str;
+    string temp_str;
     for (int i = MIN_PACKET_SIZE; i < MIN_PACKET_SIZE + buffer[2]; i++) {
         if (buffer[i] == '\0') {
             msg->payload.emplace_back(temp_str);
@@ -89,20 +90,18 @@ void decode(uint8_t buffer[MAX_PACKET_SIZE], struct message *msg, struct result 
 }
 
 void print_message(struct message *msg) {
-    std::cout << "\n\n------START MESSAGE------\n\n";
+    cout << "\n\n------START MESSAGE------\n\n";
 
-    std::cout << "Version: " << (int)msg->version << '\n';
-    std::cout << "   Type: " << (int)msg->type << "\n\n";
+    cout << "Version: " << (int)msg->version << '\n';
+    cout << "   Type: " << (int)msg->type << "\n\n";
 
-    std::cout << "_PAYLOAD_" << '\n';
+    cout << "_PAYLOAD_" << '\n';
     for (int i = 0; i < msg->payload_len; i++) {
-        std::cout << msg->payload[i] << "  ";
+        cout << msg->payload[i] << "  ";
     }
 
-    std::cout << "\n\n-------END MESSAGE-------\n\n";
+    cout << "\n\n-------END MESSAGE-------\n\n";
 }
-
-
 
 int main() {
     message m {
@@ -125,4 +124,6 @@ int main() {
     decode(buf, &m, &res);
 
     print_message(&m);
+
+    return 0;
 }
