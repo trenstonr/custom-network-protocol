@@ -31,6 +31,7 @@ int main() {
 		return 1;
 	}
 
+	uint8_t buffer[MAX_PACKET_SIZE] = {0};
 	while (true) {
 		struct sockaddr_in client_addr;
 		socklen_t client_addr_len = sizeof(client_addr);
@@ -40,20 +41,21 @@ int main() {
 			return 1;
 		}
 
-		uint8_t buffer[MAX_PACKET_SIZE] = {0};
-
 		retval = recv(client_fd, buffer, sizeof(buffer) - 1, 0);
 		if (retval == -1) {
 			std::cerr << "Error reading client fd\n";
 			return 1;
 		}
 
-		message msg = {0};
-		result res = {0};
+		message msg {0};
+		result res {0};
 
 		decode(buffer, &msg, &res);
 
 		print_message(&msg);
+
+		std::cout << "res.size: " << res.size << '\n';
+		std::cout << "res.response: " << (int)res.response << '\n';
 	}
 
 	return 0;
