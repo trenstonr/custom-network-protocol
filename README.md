@@ -9,7 +9,7 @@ LSB                                                 MSB
 + - - - - - - - - + - - - - - - - - + - - - - - - - - +
 |     version     |       type      |       len       |
 + - - - - - - - - + - - - - - - - - + - - - - - - - - +
-|     data (len byes)                                 |                 
+|     data (len bytes)                                |                 
 + - - - - - - - - + - - - - - - - - + - - - - - - - - +
 ```
 ## Future Work
